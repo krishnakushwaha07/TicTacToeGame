@@ -1,4 +1,6 @@
 console.log("Welcome to tic tac toe");
+const audio1 = new Audio("clickaudio.mp3");
+const audio2 = new Audio("gameover.mp3");
 
 let turn = "X";
 let isgameover = false;
@@ -29,10 +31,31 @@ const checkWin = () => {
       boxtext[ele[0]].innerText !== ""
     ) {
       document.querySelector(".turn").innerText =
-        boxtext[ele[0]].innerText + " is Winner";
+        boxtext[ele[0]].innerText + " is Winner!";
+      document.querySelector(".img").setAttribute("style", "height:200px");
+      audio2.play();
       isgameover = true;
     }
   });
+};
+
+// check for draw
+const checkDraw = () => {
+  let boxes = document.getElementsByClassName("boxtext");
+  let check = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+  let flag = false;
+  check.forEach((val) => {
+    if (boxes[val].innerText === "") {
+      flag = true;
+    }
+  });
+
+  if(flag == false && !isgameover) {
+    document.querySelector(".turn").innerText = "Game is Draw!";
+
+    audio2.play();
+    isgameover = true;
+  }
 };
 
 // Game logic
@@ -40,11 +63,12 @@ let boxes = document.getElementsByClassName("box");
 Array.from(boxes).forEach((element) => {
   let boxtext = element.querySelector(".boxtext");
   element.addEventListener("click", (e) => {
-    if (boxtext.innerText === "") {
+    if (boxtext.innerText === "" && !isgameover) {
       boxtext.innerText = turn;
       turn = changeTurn();
-
+      audio1.play();
       checkWin();
+      checkDraw();
       if (!isgameover) {
         document.getElementsByClassName("turn")[0].innerText =
           "Turn For " + turn;
@@ -54,7 +78,7 @@ Array.from(boxes).forEach((element) => {
 });
 
 // Reset Game Logic
-btn.addEventListener("click", () => {
+document.getElementById("btn").addEventListener("click", () => {
   let boxtext = document.querySelectorAll(".boxtext");
 
   Array.from(boxtext).forEach((element) => {
@@ -64,5 +88,6 @@ btn.addEventListener("click", () => {
   // Start new Game by making all reset
   turn = "X";
   document.getElementsByClassName("turn")[0].innerText = "Turn For " + turn;
+  document.querySelector(".img").setAttribute("style", "height:0px");
   isgameover = false;
 });
