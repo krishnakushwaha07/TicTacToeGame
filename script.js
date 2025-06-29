@@ -1,6 +1,6 @@
 console.log("Welcome to tic tac toe");
-const audio1 = new Audio("clickaudio.mp3");
-const audio2 = new Audio("gameover.mp3");
+const audio1 = new Audio("Audio/clickaudio.mp3");
+const audio2 = new Audio("Audio/gameover.mp3");
 
 let turn = "X";
 let isgameover = false;
