@@ -15,7 +15,7 @@ nav {
   justify-content: center;
   align-items: center;
   height: 5rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 nav p {
   color: rgb(0, 0, 0);
@@ -103,6 +103,9 @@ nav p {
   border-radius: 5rem;
 }
 @media screen and (min-width: 550px) {
+  nav{
+    font-size: 2rem;
+  }
   .img {
     position: absolute;
     top: 145px;
