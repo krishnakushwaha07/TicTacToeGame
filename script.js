@@ -52,7 +52,7 @@ const checkDraw = () => {
 
   if(flag == false && !isgameover) {
     document.querySelector(".turn").innerText = "Game is Draw!";
-
+    navigator.vibrate([75,25,75]);
     audio2.play();
     isgameover = true;
   }
@@ -63,6 +63,7 @@ let boxes = document.getElementsByClassName("box");
 Array.from(boxes).forEach((element) => {
   let boxtext = element.querySelector(".boxtext");
   element.addEventListener("click", (e) => {
+    navigator.vibrate(50);  // for haptic feedback
     if (boxtext.innerText === "" && !isgameover) {
       boxtext.innerText = turn;
       turn = changeTurn();
