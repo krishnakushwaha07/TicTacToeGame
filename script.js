@@ -52,7 +52,7 @@ const checkDraw = () => {
 
   if(flag == false && !isgameover) {
     document.querySelector(".turn").innerText = "Game is Draw!";
-    navigator.vibrate([75,25,75]);
+    navigator.vibrate([75,50,75]);
     audio2.play();
     isgameover = true;
   }
