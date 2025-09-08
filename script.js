@@ -33,6 +33,7 @@ const checkWin = () => {
       document.querySelector(".turn").innerText =
         boxtext[ele[0]].innerText + " is Winner!";
       document.querySelector(".img").setAttribute("style", "height:200px");
+      navigator.vibrate([100,50,100]);
       audio2.play();
       isgameover = true;
     }
@@ -52,7 +53,7 @@ const checkDraw = () => {
 
   if(flag == false && !isgameover) {
     document.querySelector(".turn").innerText = "Game is Draw!";
-    navigator.vibrate([75,50,75]);
+    navigator.vibrate([100,50,100]);
     audio2.play();
     isgameover = true;
   }
@@ -63,10 +64,10 @@ let boxes = document.getElementsByClassName("box");
 Array.from(boxes).forEach((element) => {
   let boxtext = element.querySelector(".boxtext");
   element.addEventListener("click", (e) => {
-    navigator.vibrate(50);  // for haptic feedback
     if (boxtext.innerText === "" && !isgameover) {
       boxtext.innerText = turn;
       turn = changeTurn();
+      navigator.vibrate(50);  // for haptic feedback
       audio1.play();
       checkWin();
       checkDraw();
